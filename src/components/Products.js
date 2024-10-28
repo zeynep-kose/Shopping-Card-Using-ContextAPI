@@ -24,7 +24,8 @@ function Products() {
           <button onClick={()=>context.addToCard(book)}  className='bg-gray-200 text-gray-700 font-bold py-2 px-4 rounded-lg'>Sepete Ekle</button>
         </div>
         </div>))}    
- </div>
+ </div> 
+ 
 
 
     </div>
