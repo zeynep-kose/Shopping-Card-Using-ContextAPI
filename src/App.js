@@ -10,12 +10,19 @@ function App() {
     bookList: data,
     card: JSON.parse(localStorage.getItem("card")) || [],
   });
+  const [modalState, setModalState] = useState({});
 
   useEffect(() => {
     localStorage.setItem("card", JSON.stringify(state.card));
   }, [state.card]);
 
   const addToCard = (book) => {
+    setModalState({ [book.id]: true });
+    setTimeout(() => {
+      setModalState({
+        [book.id]: false,
+      });
+    }, 2000);
     const existingCardItem = state.card.find(
       (cardItem) => cardItem.id === book.id
     );
@@ -65,11 +72,17 @@ function App() {
 
   return (
     <BookContext.Provider
-      value={{ state: state, addToCard, increase, decrease, removeFromBasket }}
+      value={{
+        state: state,
+        addToCard,
+        increase,
+        decrease,
+        removeFromBasket,
+        modalState,
+        setModalState,
+      }}
     >
       <div className="App p-4">
-        <h1 className="font-bold text-lg ">Making Shopping Basket</h1>
-
         <Routes>
           <Route exact path="/" element={<Products />} />
           <Route path="/card" element={<Card />} />

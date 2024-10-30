@@ -3,6 +3,7 @@ import { BookContext } from "../App";
 function Products() {
   const context = useContext(BookContext);
   console.log(context);
+
   return (
     <div className="flex flex-col gap-4">
       <h2 className="flex items-center justify-between">
@@ -15,7 +16,7 @@ function Products() {
         {context.state.bookList.map((book, index) => (
           <div
             key={index}
-            className="flex items-center gap-8 bg-white rounded-lg shadow-md overflow-hidden xl:w-[450px] hover:shadow-lg hover:shadow-blue-200 "
+            className="flex  relative items-center gap-8 bg-white rounded-lg shadow-md overflow-hidden xl:w-[450px] hover:shadow-lg hover:shadow-blue-200 "
           >
             <img
               className="h-72 w-56 hover:scale-105 scale-90 transform transition-transform duration-300 rounded-md hover:border-gra"
@@ -32,11 +33,18 @@ function Products() {
               </p>
               <button
                 onClick={() => context.addToCard(book)}
-                className="bg-gray-200 text-gray-700 font-bold py-2 px-4 rounded-lg"
+                className="bg-orange-400 text-white  font-semibold py-2 px-4 rounded-lg"
               >
-                Sepete Ekle
+                Add to Basket
               </button>
             </div>
+            {context.modalState[book.id] && (
+              <div className="absolute top-0 right-0 mt-2 mr-2 bg-white p-2 rounded-lg shadow-lg z-10">
+                <p className="text-sm text-green-600 font-semibold">
+                  {book.name} added to basket!
+                </p>
+              </div>
+            )}
           </div>
         ))}
       </div>
