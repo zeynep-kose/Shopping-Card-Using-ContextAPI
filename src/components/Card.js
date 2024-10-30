@@ -30,7 +30,11 @@ function Card() {
       <div className="flex flex-col gap-8 mt-4">
         {context.state.card.map((book) => (
           <div className="flex items-center gap-8 border-b-2 pb-4">
-            <img className="h-72 w-56 " src={book.image} alt={book.name} />
+            <img
+              className="h-72 w-56 rounded-md "
+              src={book.image}
+              alt={book.name}
+            />
             <div className="flex  flex-col gap-6 items-start">
               <h4 className="text-lg font-bold">{book.name}</h4>
               <p className="text-gray-500"> {book?.author}</p>
